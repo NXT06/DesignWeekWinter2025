@@ -71,3 +71,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+/DesignWeekWinter2025/Temp
+/DesignWeekWinter2025/UserSettings
+/DesignWeekWinter2025/obj/Debug
+/DesignWeekWinter2025/Logs
+/DesignWeekWinter2025/Library
