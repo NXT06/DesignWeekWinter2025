@@ -6,10 +6,13 @@ public class FollowObject : MonoBehaviour
 {
     public Transform followedObject; 
     public Vector3 objectOffset;
-    private Rigidbody cameraRb; 
+    private Rigidbody cameraRb;
+    Camera mainCamera; 
+
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = GetComponentInChildren<Camera>(); 
         cameraRb = GetComponent<Rigidbody>(); 
     }
 
@@ -17,5 +20,7 @@ public class FollowObject : MonoBehaviour
     void Update()
     {
         transform.position = followedObject.position + objectOffset;
+
+
     }
 }
