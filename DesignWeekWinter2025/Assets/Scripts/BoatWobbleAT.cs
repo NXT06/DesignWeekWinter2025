@@ -47,7 +47,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 			rotateAngle -= rotateAngle / 2;
 
-			Debug.Log(rotateAngle); 
+			
 		
 				float wobbleValue = Mathf.Sin(Time.time * wobbleFrequency) * wobbleAmplitude;
 

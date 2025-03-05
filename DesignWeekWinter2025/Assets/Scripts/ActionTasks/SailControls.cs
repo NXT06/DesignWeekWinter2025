@@ -1,28 +1,24 @@
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
-using UnityEngine; 
+using UnityEngine;
 
 
 namespace NodeCanvas.Tasks.Actions {
 
-	public class GetSpeedAT : ActionTask {
+	public class SailControls : ActionTask {
 
-		public float startingSpeed; 
-		public float scrollInput;
-		private float currentSpeed;
-		public float scrollMultiplier;
-		public BBParameter<float> maxSpeed; 
-		Blackboard BoatBlackboard; 
+		Blackboard BoatBlackboard;
+		public BBParameter<float> currentSpeed;
+        public BBParameter<float> MaxSpeed;
+        public Transform Sails;
 		
-		
-
+		float sailPercent; 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
 		protected override string OnInit() {
-
-			BoatBlackboard = agent.GetComponent<Blackboard>(); 
-			currentSpeed = startingSpeed; 
-			return null;
+			
+			BoatBlackboard = agent.GetComponent<Blackboard>();
+			return null; 
 		}
 
 		//This is called once each time the task is enabled.
@@ -30,20 +26,18 @@ namespace NodeCanvas.Tasks.Actions {
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
 
+			sailPercent = 1; 
 		}
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
+
+			BoatBlackboard.GetVariableValue<float>("currentSpeed");
+
+			sailPercent = currentSpeed.value / MaxSpeed.value;
+
 			
-			scrollInput = Input.mouseScrollDelta.y;
-
-
-
-
-			currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed.value) + (scrollInput * Time.deltaTime * scrollMultiplier);
-
-
-			BoatBlackboard.SetVariableValue("currentSpeed", Mathf.Clamp(currentSpeed, 0, maxSpeed.value)); 
+			Sails.localScale = new Vector3(1, Mathf.Clamp(sailPercent, 0.1f, 1), 1);  
 			
 		}
 
