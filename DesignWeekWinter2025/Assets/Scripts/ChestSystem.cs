@@ -14,7 +14,7 @@ public class ChestSystem : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI[] digitTexts; //digits
 
-    private int[] currentCombination = new int[4] { 1, 1, 1, 1 }; //start at 1111
+    private int[] currentCombination = new int[4] { 0, 0, 0, 0 }; //start at 0000
     private int selectedDigit = 0;
 
     void Start()
@@ -45,12 +45,13 @@ public class ChestSystem : MonoBehaviour
 
     void HandleInput()
     {
-
         //input code for each control
         if (Input.GetKeyDown(KeyCode.A)) selectedDigit = Mathf.Max(0, selectedDigit - 1);
         if (Input.GetKeyDown(KeyCode.D)) selectedDigit = Mathf.Min(3, selectedDigit + 1);
-        if (Input.GetKeyDown(KeyCode.W)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] % 9) + 1;
-        if (Input.GetKeyDown(KeyCode.S)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] == 1) ? 9 : currentCombination[selectedDigit] - 1;
+
+        // Allow the number to cycle from 0 to 9
+        if (Input.GetKeyDown(KeyCode.W)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] + 1) % 10; // wrap around at 10
+        if (Input.GetKeyDown(KeyCode.S)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] == 0) ? 9 : currentCombination[selectedDigit] - 1; // wrap around at 0
 
         UpdateDisplay();
         CheckCombination();

@@ -1,6 +1,5 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class CombinationLock : MonoBehaviour
 {
@@ -8,9 +7,8 @@ public class CombinationLock : MonoBehaviour
     [SerializeField] private string correctCombination = "1234";
 
     [Header("UI Elements")]
-    [SerializeField] private TextMeshProUGUI[] digitTexts; // 4 UI Text elements for each digit
-
-    private int[] currentCombination = new int[4] { 1, 1, 1, 1 }; // Default 1111
+    [SerializeField] private TextMeshProUGUI[] digitTexts;
+    private int[] currentCombination = new int[4] { 0, 0, 0, 0 }; //default 0000
     private int selectedDigit = 0;
     private bool isUnlocked = false;
 
@@ -18,18 +16,16 @@ public class CombinationLock : MonoBehaviour
     {
         if (isUnlocked) return;
 
-        // Move between digits
+        //move between digits
         if (Input.GetKeyDown(KeyCode.A)) selectedDigit = Mathf.Max(0, selectedDigit - 1);
         if (Input.GetKeyDown(KeyCode.D)) selectedDigit = Mathf.Min(3, selectedDigit + 1);
 
-        // Change digit values
-        if (Input.GetKeyDown(KeyCode.W)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] % 9) + 1;
-        if (Input.GetKeyDown(KeyCode.S)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] == 1) ? 9 : currentCombination[selectedDigit] - 1;
+        //change digit values (now from 0 to 9)
+        if (Input.GetKeyDown(KeyCode.W)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] + 1) % 10; //loop back to 0 after 9
+        if (Input.GetKeyDown(KeyCode.S)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] == 0) ? 9 : currentCombination[selectedDigit] - 1; //go from 0 to 9
 
-        // Update UI
         UpdateDisplay();
 
-        // Check combination
         if (Input.GetKeyDown(KeyCode.Return)) CheckCombination();
     }
 
@@ -49,7 +45,6 @@ public class CombinationLock : MonoBehaviour
         {
             isUnlocked = true;
             Debug.Log("Lock Opened!");
-            // Add unlock event logic here
         }
         else
         {
