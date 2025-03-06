@@ -1,40 +1,47 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System.Collections;
 
 public class ChestSystem : MonoBehaviour
 {
     [Header("Settings")]
-    public string correctCombination = "1234"; //combination for the lock
-    private bool playerNearby;
-    private bool isUnlocked = false;
+    public string correctCombination = "1234";
+    private bool playerNearby, isUnlocked = false, isOpening = false;
 
     private static ChestSystem activeChest;
-    private static GameObject chestHUD;
+    private static GameObject chestHUD, chestUnlockHUD;
 
     [Header("UI Elements")]
-    [SerializeField] private TextMeshProUGUI[] digitTexts; //digits
+    [SerializeField] private TextMeshProUGUI[] digitTexts;
+    [SerializeField] private Image chestUnlockSprite;
+    [SerializeField] private Sprite chestClosed, chestHalfOpen, chestOpen;
+    [SerializeField] private AudioSource chestSound;
 
-    private int[] currentCombination = new int[4] { 0, 0, 0, 0 }; //start at 0000
+    private int[] currentCombination = new int[4] { 0, 0, 0, 0 };
     private int selectedDigit = 0;
 
     void Start()
     {
         if (chestHUD == null) chestHUD = GameObject.Find("ChestHUD");
-        if (chestHUD) chestHUD.SetActive(false); //hide hud
+        if (chestUnlockHUD == null) chestUnlockHUD = GameObject.Find("ChestUnlockHUD");
+
+        if (chestHUD) chestHUD.SetActive(false);
+        if (chestUnlockHUD) chestUnlockHUD.SetActive(false);
+
+        chestUnlockSprite.sprite = chestClosed;
     }
 
     void Update()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5f, LayerMask.GetMask("Player"));
-        playerNearby = hitColliders.Length > 0;
+        playerNearby = Physics.OverlapSphere(transform.position, 5f, LayerMask.GetMask("Player")).Length > 0;
 
-        if (playerNearby && activeChest != this)
+        if (playerNearby && activeChest != this && !isOpening)
         {
             activeChest = this;
             chestHUD.SetActive(true);
         }
-
-        if (!playerNearby && activeChest == this)
+        else if (!playerNearby && activeChest == this && !isOpening)
         {
             activeChest = null;
             chestHUD.SetActive(false);
@@ -45,13 +52,10 @@ public class ChestSystem : MonoBehaviour
 
     void HandleInput()
     {
-        //input code for each control
         if (Input.GetKeyDown(KeyCode.A)) selectedDigit = Mathf.Max(0, selectedDigit - 1);
         if (Input.GetKeyDown(KeyCode.D)) selectedDigit = Mathf.Min(3, selectedDigit + 1);
-
-        // Allow the number to cycle from 0 to 9
-        if (Input.GetKeyDown(KeyCode.W)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] + 1) % 10; // wrap around at 10
-        if (Input.GetKeyDown(KeyCode.S)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] == 0) ? 9 : currentCombination[selectedDigit] - 1; // wrap around at 0
+        if (Input.GetKeyDown(KeyCode.W)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] + 1) % 10;
+        if (Input.GetKeyDown(KeyCode.S)) currentCombination[selectedDigit] = (currentCombination[selectedDigit] == 0) ? 9 : currentCombination[selectedDigit] - 1;
 
         UpdateDisplay();
         CheckCombination();
@@ -68,12 +72,34 @@ public class ChestSystem : MonoBehaviour
 
     void CheckCombination()
     {
-        string enteredCombination = string.Join("", currentCombination);
-        if (enteredCombination == correctCombination && !isUnlocked)
+        if (string.Join("", currentCombination) == correctCombination && !isUnlocked)
         {
             isUnlocked = true;
-            chestHUD.SetActive(false);
-            QuestManager.Instance.AddProgress(); //progress objective in the other script
+            StartCoroutine(PlayChestUnlockAnimation());
         }
     }
+
+    IEnumerator PlayChestUnlockAnimation()
+    {
+        if (chestUnlockSprite == null || chestUnlockHUD == null)
+        {
+            Debug.LogError("ChestUnlockSprite or ChestUnlockHUD is not assigned!");
+            yield break; // Exit if either reference is missing
+        }
+
+        chestUnlockHUD.SetActive(true);
+        chestSound.Play();
+
+        chestUnlockSprite.sprite = chestClosed;
+        yield return new WaitForSeconds(1.6f);
+
+        chestUnlockSprite.sprite = chestHalfOpen;
+        yield return new WaitForSeconds(1.6f);
+
+        chestUnlockSprite.sprite = chestOpen;
+        yield return new WaitForSeconds(1.6f);
+
+        chestUnlockHUD.SetActive(false);
+    }
+
 }

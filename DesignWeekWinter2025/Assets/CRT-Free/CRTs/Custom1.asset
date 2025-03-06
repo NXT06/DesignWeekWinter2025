@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Custom1
   m_EditorClassIdentifier: 
   data:
-    pixelationAmount: 4
+    pixelationAmount: 3
     maxColorChannels:
       red: 0
       green: 0
@@ -21,9 +21,9 @@ MonoBehaviour:
       greyScale: 0
     dithering4: 0
     dithering8: 0
-    vignette: 0.1
+    vignette: 0
     innerCurve: 20
-    monitorCurve: 0.1
+    monitorCurve: 0
     monitorInnerSize:
       width: 0
       height: 0
@@ -34,12 +34,12 @@ MonoBehaviour:
     monitorRoundness: 0.2
     monitorTexture: {fileID: 0}
     monitorColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    innerMonitorDarkness: 0.6
-    innerMonitorShine: 0.1
+    innerMonitorDarkness: 0
+    innerMonitorShine: 0
     colorScans:
       greenChannelMultiplier: 0.1
       redBlueChannelMultiplier: 0.15
-      sizeMultiplier: 2
+      sizeMultiplier: 0
     innerMonitorShineRadius: -0.087
     innerMonitorShineCurve: 10
-  validationId: f54c2fb8-5577-466a-8baa-98b05486d5ef
+  validationId: 7c8132a6-e169-46cf-bdb9-f07325c6d49d
