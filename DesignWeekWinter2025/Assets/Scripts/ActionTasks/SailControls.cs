@@ -11,6 +11,8 @@ namespace NodeCanvas.Tasks.Actions {
 		public BBParameter<float> currentSpeed;
         public BBParameter<float> MaxSpeed;
         public Transform Sails;
+		public Transform Wake1;
+		public Transform Wake2; 
 		
 		float sailPercent; 
 		//Use for initialization. This is called only once in the lifetime of the task.
@@ -38,8 +40,9 @@ namespace NodeCanvas.Tasks.Actions {
 
 			
 			Sails.localScale = new Vector3(1, Mathf.Clamp(sailPercent, 0.1f, 1), 1);  
-			
-		}
+			Wake1.localScale = new Vector3(1, Mathf.Clamp(sailPercent, 0f, 1), 1);
+			Wake2.localScale = new Vector3(1, Mathf.Clamp(sailPercent, 0f, 1), 1);
+        }
 
 		//Called when the task is disabled.
 		protected override void OnStop() {

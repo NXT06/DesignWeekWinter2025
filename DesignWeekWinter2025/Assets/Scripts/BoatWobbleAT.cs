@@ -49,7 +49,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 			
 		
-				float wobbleValue = Mathf.Sin(Time.deltaTime * wobbleFrequency) * wobbleAmplitude;
+				float wobbleValue = Mathf.Sin(Time.time * wobbleFrequency) * wobbleAmplitude;
 
 				boatBody.transform.localRotation = Quaternion.Euler(0, 0, wobbleValue + (rotateAngle));
 
