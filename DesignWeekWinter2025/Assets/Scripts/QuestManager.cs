@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuestManager : MonoBehaviour
 {
@@ -20,6 +21,6 @@ public class QuestManager : MonoBehaviour
 
     void WinGame()
     {
-        Debug.Log("You win!");
+        SceneManager.LoadScene("End Screen");
     }
 }
