@@ -18,6 +18,8 @@ public class ChestSystem : MonoBehaviour
     [SerializeField] private Sprite chestClosed, chestHalfOpen, chestOpen;
     [SerializeField] private AudioSource chestSound;
 
+    public GameObject gemSlot;
+
     private int[] currentCombination = new int[4] { 0, 0, 0, 0 };
     private int selectedDigit = 0;
 
@@ -75,6 +77,8 @@ public class ChestSystem : MonoBehaviour
         if (string.Join("", currentCombination) == correctCombination && !isUnlocked)
         {
             isUnlocked = true;
+            gemSlot.SetActive(true);
+            QuestManager.AddProgress();
             StartCoroutine(PlayChestUnlockAnimation());
         }
     }
@@ -100,6 +104,10 @@ public class ChestSystem : MonoBehaviour
         yield return new WaitForSeconds(1.6f);
 
         chestUnlockHUD.SetActive(false);
+
+        if (QuestManager.progress >= (QuestManager.totalPieces)){
+            QuestManager.WinGame();
+        }
     }
 
 }

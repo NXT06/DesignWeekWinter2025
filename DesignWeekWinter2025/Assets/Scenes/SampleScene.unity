@@ -21042,6 +21042,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3613779852570368773, guid: b93185577f4da694d836ceb494bcb1a1, type: 3}
+      propertyPath: gemSlot
+      value: 
+      objectReference: {fileID: 588370914}
+    - target: {fileID: 3613779852570368773, guid: b93185577f4da694d836ceb494bcb1a1, type: 3}
       propertyPath: chestOpen
       value: 
       objectReference: {fileID: 21300000, guid: d24f5fd5ac06fb2469d3e8210d2136cd, type: 3}
@@ -59063,6 +59067,7 @@ MonoBehaviour:
   chestHalfOpen: {fileID: 21300000, guid: 5f650485083e3664bb9634227591d1c7, type: 3}
   chestOpen: {fileID: 21300000, guid: 78ba026d10475a547826e0a6b57ee0bf, type: 3}
   chestSound: {fileID: 1904776033}
+  gemSlot: {fileID: 887257882}
 --- !u!65 &1368662926
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75518,6 +75523,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 48f773089530e314f81904d592ffa973, type: 2}
     - target: {fileID: 3613779852570368773, guid: b93185577f4da694d836ceb494bcb1a1, type: 3}
+      propertyPath: gemSlot
+      value: 
+      objectReference: {fileID: 1490066711}
+    - target: {fileID: 3613779852570368773, guid: b93185577f4da694d836ceb494bcb1a1, type: 3}
       propertyPath: chestOpen
       value: 
       objectReference: {fileID: 21300000, guid: 4419c767e3fbd1841b7e5b1730bb7fe9, type: 3}
@@ -75541,6 +75550,10 @@ PrefabInstance:
       propertyPath: correctCombination
       value: 7336
       objectReference: {fileID: 0}
+    - target: {fileID: 3613779852570368773, guid: b93185577f4da694d836ceb494bcb1a1, type: 3}
+      propertyPath: gemSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 1490066711}
     - target: {fileID: 3613779852570368773, guid: b93185577f4da694d836ceb494bcb1a1, type: 3}
       propertyPath: digitTexts.Array.data[0]
       value: 
@@ -77401,12 +77414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a8ec9bf3862004eaa0e401aa2d2d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalPieces: 4
-  gemSlots:
-  - {fileID: 1490066711}
-  - {fileID: 588370914}
-  - {fileID: 887257882}
-  - {fileID: 79841352}
 --- !u!4 &1772019911
 Transform:
   m_ObjectHideFlags: 0
@@ -84474,6 +84481,7 @@ MonoBehaviour:
   chestHalfOpen: {fileID: 21300000, guid: fa1810f7ee69e99489a481c7704fd3df, type: 3}
   chestOpen: {fileID: 21300000, guid: 9d3befb74832d7b42ad70260332c30a4, type: 3}
   chestSound: {fileID: 1904776033}
+  gemSlot: {fileID: 79841352}
 --- !u!65 &1923662112
 BoxCollider:
   m_ObjectHideFlags: 0

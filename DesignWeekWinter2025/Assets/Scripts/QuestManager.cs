@@ -4,25 +4,26 @@ using UnityEngine.SceneManagement;
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance;
-    private int progress = 0;
-    public int totalPieces = 5;
-    public GameObject[] gemSlots = new GameObject[4]; 
+    public static int progress = 0;
+    public static int totalPieces = 4;
 
     void Awake()
     {
         if (Instance == null) Instance = this;
     }
 
-    public void AddProgress()
+    private void Start()
     {
-        gemSlots[progress].SetActive(true); 
-        progress++;
-        Debug.Log("Progress: " + progress + "/" + totalPieces);
-
-        if (progress >= totalPieces) WinGame();
+        progress = 0;
     }
 
-    void WinGame()
+    public static void AddProgress()
+    {
+        progress++;
+        Debug.Log("Progress: " + progress + "/" + totalPieces);
+    }
+
+    public static void WinGame()
     {
         SceneManager.LoadScene("End Screen");
     }

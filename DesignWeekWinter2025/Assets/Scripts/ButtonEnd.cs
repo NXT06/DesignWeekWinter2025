@@ -17,9 +17,15 @@ public class ButtonEnd : MonoBehaviour
         
     }
 
-    public void Click()
+    public void EndGame()
     {
-        Debug.Log("new scene");
+        //Debug.Log("new scene");
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void StartGame()
+    {
+       // Debug.Log("new scene");
+        SceneManager.LoadScene("Start Screen");
     }
 }
