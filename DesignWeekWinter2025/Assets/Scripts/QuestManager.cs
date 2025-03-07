@@ -6,6 +6,7 @@ public class QuestManager : MonoBehaviour
     public static QuestManager Instance;
     private int progress = 0;
     public int totalPieces = 5;
+    public GameObject[] gemSlots = new GameObject[4]; 
 
     void Awake()
     {
@@ -14,8 +15,10 @@ public class QuestManager : MonoBehaviour
 
     public void AddProgress()
     {
+        gemSlots[progress].SetActive(true); 
         progress++;
         Debug.Log("Progress: " + progress + "/" + totalPieces);
+
         if (progress >= totalPieces) WinGame();
     }
 
