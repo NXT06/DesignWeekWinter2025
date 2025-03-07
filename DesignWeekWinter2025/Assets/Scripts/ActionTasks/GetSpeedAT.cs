@@ -32,23 +32,20 @@ namespace NodeCanvas.Tasks.Actions {
 
 		}
 
-		//Called once per frame while the action is active.
-		protected override void OnUpdate() {
-			
-			scrollInput = Input.mouseScrollDelta.y;
+        //Called once per frame while the action is active.
+        protected override void OnUpdate()
+        {
 
+            scrollInput = Input.mouseScrollDelta.y;
 
+            currentSpeed += scrollInput * Time.deltaTime * scrollMultiplier;
+            currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed.value);
 
+            BoatBlackboard.SetVariableValue("currentSpeed", currentSpeed);
+        }
 
-			currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed.value) + (scrollInput * Time.deltaTime * scrollMultiplier);
-
-
-			BoatBlackboard.SetVariableValue("currentSpeed", Mathf.Clamp(currentSpeed, 0, maxSpeed.value)); 
-			
-		}
-
-		//Called when the task is disabled.
-		protected override void OnStop() {
+        //Called when the task is disabled.
+        protected override void OnStop() {
 			
 		}
 
