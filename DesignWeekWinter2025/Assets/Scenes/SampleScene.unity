@@ -67601,7 +67601,7 @@ MonoBehaviour:
   _serializedBlackboard: '{"_variables":{"Vertical":{"_name":"Vertical","_id":"6c8201bf-9437-48fe-8771-47200cef149c","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"Horizontal":{"_name":"Horizontal","_id":"4e9f99d3-6f85-4d88-afcc-51a9a45e7c52","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"currentSpeed":{"_name":"currentSpeed","_id":"5e03287c-bffd-41c0-976a-d263e0b56d79","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
-    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"maxSpeed":{"_value":10.0,"_name":"maxSpeed","_id":"5b52573d-ca20-4ede-86fc-d7f57cb9ac8a","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"maxSpeed":{"_value":60.0,"_name":"maxSpeed","_id":"5b52573d-ca20-4ede-86fc-d7f57cb9ac8a","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
   _serializedVariables:
@@ -67614,7 +67614,7 @@ MonoBehaviour:
   - _json: '{"_name":"currentSpeed","_id":"5e03287c-bffd-41c0-976a-d263e0b56d79","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
-  - _json: '{"_value":10.0,"_name":"maxSpeed","_id":"5b52573d-ca20-4ede-86fc-d7f57cb9ac8a","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+  - _json: '{"_value":60.0,"_name":"maxSpeed","_id":"5b52573d-ca20-4ede-86fc-d7f57cb9ac8a","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
 --- !u!114 &1521759152
