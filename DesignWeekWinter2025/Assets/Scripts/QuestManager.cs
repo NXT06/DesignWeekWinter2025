@@ -9,6 +9,8 @@ public class QuestManager : MonoBehaviour
 
     void Awake()
     {
+        QualitySettings.vSyncCount = 0; // Set vSyncCount to 0 so that using .targetFrameRate is enabled.
+        Application.targetFrameRate = 60;
         if (Instance == null) Instance = this;
     }
 
